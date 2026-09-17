@@ -3,7 +3,7 @@ import joblib
 
 model = joblib.load("house_price_model.pkl")
 
-st.title("Predicted Price")
+st.title("🏠 House Price Prediction")
 
 area = st.number_input(
     "Enter Area (sq ft)",
@@ -13,10 +13,10 @@ area = st.number_input(
 )
 
 total_floors = st.number_input(
-    "Enter total no of floors",
+    "Enter Total No. of Floors",
     min_value=0.0,
     max_value=100.0,
-    value=10.0
+    value=2.0
 )
 
 bedroom = st.number_input(
@@ -26,30 +26,28 @@ bedroom = st.number_input(
     value=2
 )
 
-
-
 # Validation
-if area < 600:
-    st.error("Area should not be more than 600 sq ft!!")
+if area > 600:
+    st.error("❌ Area should not be more than 600 sq ft!!")
 
-elif area < 3000:
-    st.error("Area should not be less than 100 sq ft!!")
+elif area < 100:
+    st.error("❌ Area should not be less than 100 sq ft!!")
 
 elif bedroom < 1 or bedroom > 4:
-    st.error("Bedrooms should not be less than 1 or more than 5!!")
+    st.error("❌ Bedrooms should not be less than 1 or more than 4!!")
 
 elif total_floors < 1 or total_floors > 10:
-    st.error("Age should not be less than 1 or more than 4!!")
+    st.error("❌ Total floors should not be less than 1 or more than 10!!")
 
 else:
-    if st.button("Predict Price"):
+    if st.button("🔮 Predict Price"):
 
-        input_data = [[area, bedroom, age]]
+        input_data = [[area, total_floors, bedroom]]
 
         prediction = model.predict(input_data)
 
-        st.subheader("Prediction Result")
+        st.subheader("📊 Prediction Result")
 
         st.success(
-            f"Predicted House Price: ₹{prediction[0]:,.2f}"
+            f"🏠 Predicted House Price: ₹{prediction[0]:,.2f}"
         )
