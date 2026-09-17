@@ -1,4 +1,4 @@
 
 streamlit
-sci-kit learn
+scikit-learn
 joblib
