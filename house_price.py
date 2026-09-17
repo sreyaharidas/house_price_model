@@ -12,6 +12,13 @@ area = st.number_input(
     value=500.0
 )
 
+total_floors = st.number_input(
+    "Enter total no of floors",
+    min_value=0.0,
+    max_value=100.0,
+    value=10.0
+)
+
 bedroom = st.number_input(
     "Enter Number of Bedrooms",
     min_value=1,
@@ -19,24 +26,19 @@ bedroom = st.number_input(
     value=2
 )
 
-age = st.number_input(
-    "Enter House Age (years)",
-    min_value=0.0,
-    max_value=100.0,
-    value=10.0
-)
+
 
 # Validation
-if area > 600:
+if area < 600:
     st.error("Area should not be more than 600 sq ft!!")
 
-elif area < 100:
+elif area < 3000:
     st.error("Area should not be less than 100 sq ft!!")
 
-elif bedroom < 1 or bedroom > 5:
+elif bedroom < 1 or bedroom > 4:
     st.error("Bedrooms should not be less than 1 or more than 5!!")
 
-elif age < 1 or age > 4:
+elif total_floors < 1 or total_floors > 10:
     st.error("Age should not be less than 1 or more than 4!!")
 
 else:
